@@ -1,15 +1,17 @@
 #include <iostream>
 #include <ctime>
+#include <list>
 enum { WIDTH = 11 , HEIGHT = 8 };
 enum Field { EMPTY,APPLE,SNAKE_BLOCK,BORDER};
 Field f[WIDTH+2][HEIGHT+2];
-
+typedef std::list<std::pair<int, int> > snakeBlock;
+snakeBlock sBlock;
 void draw(int w=1,int h=1);
 void initField();
 void drawField();
 void newApple();
 void setField(Field f,int x,int y);
-Field isEmptyField(int,int);
+Field blockField(int,int);
 // Размеры поля
 
 
@@ -23,25 +25,52 @@ int main()
 	
 	std::cout << "This is ConsoleSnake!" << std::endl;
 	initField();
-
-
-
-	while(cin.get())
+	newApple();
+	sBlock.push_back(std::pair<int,int>(WIDTH/2+1,HEIGHT/2+1));
+	char walk = ' ';
+	do
 	{
+		std::pair<int,int> p = sBlock.front();
+		
+		switch(walk)
+		{
+		case 'w':
+			p.second--;
+			break;
+		case 'a':
+			p.first--;
+			break;
+		case 's':
+			p.second++;
+			break;
+		case 'd':
+			p.first++;
+			break;
+		}
+		// Проверка на выход за пределы поля
+		if(p.first < 1) p.first = 1;
+		else if(p.first > WIDTH) p.first = WIDTH;
+		if(p.second < 1) p.second = 1;
+		else if(p.second > HEIGHT) p.second = HEIGHT;
+		// Проверка на столкновение с яблоком
+		
+		sBlock.push_front(p);
+		
+		if (blockField(p.first, p.second) != APPLE)
+		{
+			setField(SNAKE_BLOCK, p.first, p.second);
+			std::pair<int, int> p = sBlock.back();
+			setField(EMPTY, p.first, p.second);
+			sBlock.pop_back();
+		}
+		else
+		{
+			setField(SNAKE_BLOCK, p.first, p.second);
+			newApple();
+		}
 		system("cls");
-		newApple();
 		drawField();
-	}
-
-	
-	
-
-	
-	
-
-
-
-
+	}while(cin.get(walk) && walk != 'q');
 
 	//draw(WIDTH,HEIGHT);
 
@@ -56,14 +85,14 @@ void newApple()
 		x = rand() % WIDTH+1;
 		y = rand() % HEIGHT+1;
 	}
-	while(isEmptyField(x,y)!=EMPTY);
+	while(blockField(x,y)!=EMPTY);
 	setField(APPLE,x,y);
 }
 void setField(Field t,int x,int y)
 {
 	f[x][y] = t;
 }
-Field isEmptyField(int w,int h)
+Field blockField(int w,int h)
 {
 	return f[w][h];
 }
