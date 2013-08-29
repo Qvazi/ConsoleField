@@ -10,6 +10,8 @@ int main()
 
 	cout << "Hello, GitHub!" << endl;
 	
+	game.draw();
+
 	cout << "Press any key to quit...";
 	cin.get();
 	return 0;

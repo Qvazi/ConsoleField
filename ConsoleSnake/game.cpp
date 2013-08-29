@@ -2,5 +2,5 @@
 
 void Game::draw()
 {
-	//field_.draw();
+	field_.draw();
 }
