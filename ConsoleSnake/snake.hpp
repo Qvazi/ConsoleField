@@ -24,6 +24,7 @@ public:
 	const Body & getBody() const;
 	void keyEvent(Direction d);
 	bool update(Field & field);
+	const Direction & getDirection() const;
 };
 
 #endif

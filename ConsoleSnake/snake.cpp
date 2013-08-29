@@ -77,3 +77,7 @@ const Snake::Body & Snake::getBody() const
 {
 	return body;
 }
+const Snake::Direction & Snake::getDirection() const
+{
+	return direction;
+}

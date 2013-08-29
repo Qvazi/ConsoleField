@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include "field.hpp"
+#include "snake.hpp"
 
 Field::Field()
 {
@@ -14,11 +15,11 @@ Field::Field()
 				f_[w][h] = EMPTY;
 	newApple();
 }
-void Field::draw()
+void Field::draw(const Snake & s)
 {
 	using std::cout;
 	using std::endl;
-
+	Point p = s.getBody().front();
 	for (int y = 0; y < HEIGHT+2; ++y)
 	{
 		for (int x = 0; x < WIDTH+2; ++x)
@@ -36,7 +37,24 @@ void Field::draw()
 			  std::cout << static_cast<char>(219);
 			  break;
 		  case SNAKE_BODY:
-			   std::cout << static_cast<char>(15);
+			  if(x == p.w && y == p.h)
+				  switch(s.getDirection())
+				  {
+				  case Snake::LEFT:
+					  std::cout << static_cast<char>(17);
+					  break;
+				  case Snake::RIGHT:
+					  std::cout << static_cast<char>(16);
+					  break;
+				  case Snake::DOWN:
+					  std::cout << static_cast<char>(31);
+					  break;
+				  case Snake::UP:
+					  std::cout << static_cast<char>(30);
+					  break;
+				  }
+			  else
+				  std::cout << 'o';
 		break;
 		  case APPLE:
 			std::cout << char(3);

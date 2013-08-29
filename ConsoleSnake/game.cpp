@@ -2,7 +2,7 @@
 
 void Game::draw()
 {
-	field_.draw();
+	field_.draw(snake_);
 }
 void Game::keyEvent(Snake::Direction d)
 {
