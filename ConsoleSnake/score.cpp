@@ -17,7 +17,7 @@ int Score::getScore() const
 void Score::plusApple()
 {
 	countApple_++;
-	if(!(countApple_ % 5))
+	if(!(countApple_ % APPLE_PER_LEVEL))
 		level_++;
 	score_ = countApple_ * SCORE_PER_APPLE * level_;
 }
