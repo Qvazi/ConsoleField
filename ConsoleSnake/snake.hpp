@@ -1,12 +1,12 @@
 #ifndef _SNAKE_HPP_
 #define _SNAKE_HPP_
 #include <list>
+#include "field.hpp"
 
 class Point
 {
-private:
-	int w,h;
 public:
+	int w,h;
 	Point(int w_ = 1,int h_ = 1):w(w_),h(h_){}
 };
 
@@ -21,6 +21,9 @@ private:
 	Direction lastMove;
 public:
 	Snake();
+	const Body & getBody() const;
+	void keyEvent(Direction d);
+	bool update(Field & field);
 };
 
 #endif

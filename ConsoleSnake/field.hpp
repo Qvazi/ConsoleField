@@ -4,8 +4,8 @@
 class Field
 {
 public:
-	enum { WIDTH = 15, HEIGHT = 10 };
-	enum Unit { EMPTY,BORDER,APPLE,SNAKE_BODY};
+	enum { WIDTH = 20, HEIGHT = 15 };
+	enum Unit { EMPTY,TDBORDER,LRBORDER,APPLE,SNAKE_BODY};
 private:
 	Unit f_[WIDTH+2][HEIGHT+2];
 public:

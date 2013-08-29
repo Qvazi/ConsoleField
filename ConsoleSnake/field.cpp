@@ -6,8 +6,10 @@ Field::Field()
 {
 	for(int h=0;h<HEIGHT+2;++h)
 		for(int w=0;w<WIDTH+2;++w)
-			if(w==0 || h==0 || w==(WIDTH+1) || h==(HEIGHT+1))
-				f_[w][h] = BORDER;
+			if( h==0 || h==(HEIGHT+1) )
+				f_[w][h] = TDBORDER;
+			else if( w==0 || w==(WIDTH+1) )
+				f_[w][h] = LRBORDER;
 			else
 				f_[w][h] = EMPTY;
 	newApple();
@@ -26,14 +28,18 @@ void Field::draw()
 		  case EMPTY:
 				std::cout << ' ';
 		break;
-		  case BORDER:
-			  std::cout << '#';
+		  case TDBORDER:
+			  std::cout << static_cast<char>(219);
+			  break;
+		  case LRBORDER:
+			  //std::cout << static_cast<char>(219);
+			  std::cout << static_cast<char>(219);
 			  break;
 		  case SNAKE_BODY:
-			std::cout << '+';
+			   std::cout << static_cast<char>(15);
 		break;
 		  case APPLE:
-			std::cout << '@';
+			std::cout << char(3);
 		break;
 		  }
 	  
