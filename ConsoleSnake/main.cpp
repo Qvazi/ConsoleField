@@ -41,10 +41,7 @@ int main()
 				
 	
 	} while ( getline(cin,key) && key != "q");
-
-
-
-
+	
 	cout << "Press any key to quit...";
 	cin.get();
 	return 0;

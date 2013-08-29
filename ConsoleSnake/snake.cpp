@@ -1,7 +1,7 @@
 #include <ctime>
 #include "snake.hpp"
 #include "field.hpp"
-
+#include "game.hpp"
 Snake::Snake()
 {
 	srand(time(0));
@@ -34,7 +34,7 @@ void Snake::keyEvent(Direction d)
 	  }
   direction = d;
 }
-bool Snake::update(Field & f)
+bool Snake::update(Field & f,Score & score)
 {
 	lastMove = direction;
 	Point p = body.front();
@@ -59,6 +59,7 @@ bool Snake::update(Field & f)
 
 	if(f.getUnit(p.w,p.h) == Field::APPLE)
 	{
+		score.plusApple();
 		f.setUnit(Field::SNAKE_BODY,p.w,p.h);
 		f.newApple();
 	}

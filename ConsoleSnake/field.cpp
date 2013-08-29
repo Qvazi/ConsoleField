@@ -33,7 +33,6 @@ void Field::draw(const Snake & s)
 			  std::cout << static_cast<char>(219);
 			  break;
 		  case LRBORDER:
-			  //std::cout << static_cast<char>(219);
 			  std::cout << static_cast<char>(219);
 			  break;
 		  case SNAKE_BODY:
