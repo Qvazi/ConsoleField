@@ -12,6 +12,8 @@ public:
 	Field();
 	void draw();
 	void newApple();
+	Unit getUnit(int w,int h);
+	void setUnit(Unit u,int w,int h);
 };
 
 #endif

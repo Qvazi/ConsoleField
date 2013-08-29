@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 #include "field.hpp"
 
 Field::Field()
@@ -9,6 +10,7 @@ Field::Field()
 				f_[w][h] = BORDER;
 			else
 				f_[w][h] = EMPTY;
+	newApple();
 }
 void Field::draw()
 {
@@ -42,4 +44,23 @@ void Field::draw()
 
 void Field::newApple()
 {
+	srand(time(0));
+	int w,h;
+	do
+	{
+		w = rand() % WIDTH+1;
+		h = rand() % HEIGHT+1;
+	}
+	while(getUnit(w,h)!=EMPTY);
+	setUnit(APPLE,w,h);
+}
+
+void Field::setUnit(Unit u,int w,int h)
+{
+	f_[w][h] = u;
+}
+
+Field::Unit Field::getUnit(int w,int h)
+{
+	return f_[w][h];
 }

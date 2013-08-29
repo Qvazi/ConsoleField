@@ -9,7 +9,7 @@ int main()
 	using std::cin;
 
 	cout << "Hello, GitHub!" << endl;
-	
+
 	game.draw();
 
 	cout << "Press any key to quit...";
