@@ -1,11 +1,15 @@
 #include <iostream>
 #include <string>
+#include <conio.h>
+#include <Windows.h>
 #include "game.hpp"
+#define Speed(x) Sleep(x);
 Game game;
 
-void keyEvent(std::string & key)
+void keyEvent()
 {
-	switch(key[0])
+	char key = _getch();
+	switch(key)
 		{
 		case 'w':
 			game.keyEvent(Snake::UP);
@@ -19,6 +23,7 @@ void keyEvent(std::string & key)
 		case 'a':
 			game.keyEvent(Snake::LEFT);
 			break;
+		default: break;
 		}
 }
 
@@ -28,21 +33,17 @@ int main()
 	using std::endl;
 	using std::cin;
 	using std::string;
-
-	cout << "Hello, GitHub!" << endl;
-	string key;
-	
-	do
+		
+	while(true)
 	{
-		system("cls");
-		keyEvent(key);
+		if(_kbhit()) keyEvent();
+		
 		game.update();
+		system("cls");
 		game.draw();
-				
+		Speed(game.getSpeedGame());
+		
+	}
 	
-	} while ( getline(cin,key) && key != "q");
-	
-	cout << "Press any key to quit...";
-	cin.get();
 	return 0;
 }

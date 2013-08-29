@@ -55,6 +55,10 @@ bool Snake::update(Field & f,Score & score)
 	}
 	if(p.w < 1 || p.w > Field::WIDTH || p.h < 1 || p.h > Field::HEIGHT)
 		return false;
+
+	if (f.getUnit(p.w, p.h) == Field::SNAKE_BODY)
+    return false;
+
 	body.push_front(p);
 
 	if(f.getUnit(p.w,p.h) == Field::APPLE)
