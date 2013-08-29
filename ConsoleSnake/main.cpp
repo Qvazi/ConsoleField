@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include "game.hpp"
 #define Speed(x) Sleep(x);
+
 Game game;
 
 void keyEvent()

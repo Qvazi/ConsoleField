@@ -34,7 +34,7 @@ void Snake::keyEvent(Direction d)
 	  }
   direction = d;
 }
-bool Snake::update(Field & f,Score & score)
+bool Snake::update(Game & game)
 {
 	lastMove = direction;
 	Point p = body.front();
@@ -53,25 +53,39 @@ bool Snake::update(Field & f,Score & score)
 		p.w++;
 		break;
 	}
-	if(p.w < 1 || p.w > Field::WIDTH || p.h < 1 || p.h > Field::HEIGHT)
-		return false;
-
-	if (f.getUnit(p.w, p.h) == Field::SNAKE_BODY)
+	if(game.getDiffuculty() == Game::EASY)
+	{
+		if(p.w < 1)
+			p.w = Field::WIDTH;
+		else if(p.w > Field::WIDTH)
+			p.w = 1;
+		if(p.h < 1)
+			p.h = Field::HEIGHT;
+		else if(p.h > Field::HEIGHT)
+			p.h = 1;
+		
+	}
+	else
+	{
+		if(p.w < 1 || p.w > Field::WIDTH || p.h < 1 || p.h > Field::HEIGHT)
+			return false;
+	}
+	if (game.getField().getUnit(p.w, p.h) == Field::SNAKE_BODY)
     return false;
 
 	body.push_front(p);
 
-	if(f.getUnit(p.w,p.h) == Field::APPLE)
+	if(game.getField().getUnit(p.w,p.h) == Field::APPLE)
 	{
-		score.plusApple();
-		f.setUnit(Field::SNAKE_BODY,p.w,p.h);
-		f.newApple();
+		game.getScore().plusApple();
+		game.getField().setUnit(Field::SNAKE_BODY,p.w,p.h);
+		game.getField().newApple();
 	}
 	else
 	{
-		f.setUnit(Field::SNAKE_BODY,p.w,p.h);
+		game.getField().setUnit(Field::SNAKE_BODY,p.w,p.h);
 		Point p = body.back();
-		f.setUnit(Field::EMPTY,p.w,p.h);
+		game.getField().setUnit(Field::EMPTY,p.w,p.h);
 		body.pop_back();
 	}
 	if(body.size() >= Field::WIDTH * Field::HEIGHT -1)

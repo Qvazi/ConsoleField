@@ -3,8 +3,7 @@
 #define _SNAKE_HPP_
 #include <list>
 #include "field.hpp"
-class Score;
-
+class Game;
 class Point
 {
 public:
@@ -25,7 +24,7 @@ public:
 	Snake();
 	const Body & getBody() const;
 	void keyEvent(Direction d);
-	bool update(Field & field,Score & score);
+	bool update(Game & game);
 	const Direction & getDirection() const;
 };
 

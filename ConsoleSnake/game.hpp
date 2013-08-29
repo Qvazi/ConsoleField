@@ -9,16 +9,21 @@
 class Game
 {
 public:
-	enum { START_SPEED_GAME = 200, SPEED_PER_LEVEL = 15 };
+	enum { START_SPEED_GAME = 260, SPEED_PER_LEVEL = 20 };
+	enum Difficulty { EASY , MEDIUM , HARD };
 private:
 	Field field_;
 	Snake snake_;
 	Score score_;
 	int speedGame;
+	Difficulty difficulty_;
 public:
 	Game();
 	void draw();
 	int getSpeedGame() const;
+	Field & getField();
+	Score & getScore();
+	Difficulty getDiffuculty() const;
 	void keyEvent(Snake::Direction d);
 	void update();
 };

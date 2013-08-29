@@ -7,6 +7,7 @@ Game::Game()
 	field_ = Field();
 	score_ = Score();
 	speedGame = START_SPEED_GAME;
+	difficulty_ = HARD;
 }
 void Game::draw()
 {
@@ -20,7 +21,7 @@ void Game::keyEvent(Snake::Direction d)
 }
 void Game::update()
 {
-	if(!snake_.update(field_,score_))
+	if(!snake_.update(*this))
 	{
 		snake_ = Snake();
 		field_ = Field();
@@ -34,4 +35,16 @@ void Game::update()
 int Game::getSpeedGame() const
 {
 	return speedGame;
+}
+Field & Game::getField()
+{
+	return field_;
+}
+Score & Game::getScore()
+{
+	return score_;
+}
+Game::Difficulty Game::getDiffuculty() const
+{
+	return difficulty_;
 }
