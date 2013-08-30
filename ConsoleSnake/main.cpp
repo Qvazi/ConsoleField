@@ -7,9 +7,11 @@
 
 Game game;
 
+
 void keyEvent()
 {
 	char key = _getch();
+	
 	switch(key)
 		{
 		case 'w':
@@ -24,12 +26,20 @@ void keyEvent()
 		case 'a':
 			game.keyEvent(Snake::LEFT);
 			break;
+		case 'u':
+			Game::SOUND = !Game::SOUND;
+			break;
+		case 'p':
+			Game::PAUSE = !Game::PAUSE;
+			break;
 		default: break;
 		}
+	
 }
 
 int main()
 {
+	system("title ConsoleSnake.");
 	using std::cout;
 	using std::endl;
 	using std::cin;
@@ -39,10 +49,15 @@ int main()
 	{
 		if(_kbhit()) keyEvent();
 		
-		game.update();
-		system("cls");
-		game.draw();
-		Speed(game.getSpeedGame());
+		if(Game::PAUSE)
+			continue;
+			game.update();
+			system("cls");			
+			game.draw();
+			cout << "Press 'p' to pause." << endl;
+			cout << "Press 'u' to On\\Off sound." << endl;
+			Speed(game.getSpeedGame());
+		
 		
 	}
 	

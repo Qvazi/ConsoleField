@@ -1,4 +1,5 @@
 #include <ctime>
+#include <iostream>
 #include "snake.hpp"
 #include "field.hpp"
 #include "game.hpp"
@@ -11,6 +12,8 @@ Snake::Snake()
 }
 void Snake::keyEvent(Direction d)
 {
+	if(Game::PAUSE)
+		return;
 	if (d == direction)
 	 return;
 	  switch (d)
@@ -36,6 +39,8 @@ void Snake::keyEvent(Direction d)
 }
 bool Snake::update(Game & game)
 {
+	if(Game::PAUSE)
+		return true;
 	lastMove = direction;
 	Point p = body.front();
 	switch(direction)
@@ -68,15 +73,25 @@ bool Snake::update(Game & game)
 	else
 	{
 		if(p.w < 1 || p.w > Field::WIDTH || p.h < 1 || p.h > Field::HEIGHT)
+		{
+			if(Game::SOUND)
+				std::cout << "\a\a\a";
 			return false;
+		}
 	}
 	if (game.getField().getUnit(p.w, p.h) == Field::SNAKE_BODY)
-    return false;
+	{
+		if(Game::SOUND)
+			std::cout << "\a\a\a";
+		return false;
+	}
 
 	body.push_front(p);
 
 	if(game.getField().getUnit(p.w,p.h) == Field::APPLE)
 	{
+		if(Game::SOUND)
+			std::cout << "\a";
 		game.getScore().plusApple();
 		game.getField().setUnit(Field::SNAKE_BODY,p.w,p.h);
 		game.getField().newApple();

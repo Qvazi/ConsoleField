@@ -1,6 +1,8 @@
 #include <iostream>
 #include "game.hpp"
 
+bool Game::SOUND = false;
+bool Game::PAUSE = false;
 Game::Game()
 {
 	snake_ = Snake();
@@ -11,9 +13,10 @@ Game::Game()
 }
 void Game::draw()
 {
-	field_.draw(snake_);
 	std::cout << "Level: " << score_.getLevel()
 				<< " Score: " << score_.getScore() << std::endl;
+	field_.draw(snake_);
+	
 }
 void Game::keyEvent(Snake::Direction d)
 {

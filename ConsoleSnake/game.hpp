@@ -11,6 +11,8 @@ class Game
 public:
 	enum { START_SPEED_GAME = 260, SPEED_PER_LEVEL = 20 };
 	enum Difficulty { EASY , MEDIUM , HARD };
+	static bool SOUND;
+	static bool PAUSE;
 private:
 	Field field_;
 	Snake snake_;
@@ -19,6 +21,7 @@ private:
 	Difficulty difficulty_;
 public:
 	Game();
+
 	void draw();
 	int getSpeedGame() const;
 	Field & getField();
