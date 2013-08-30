@@ -5,7 +5,7 @@
 class Score
 {
 public:
-	enum { SCORE_PER_APPLE = 10, APPLE_PER_LEVEL = 5 };
+	enum { SCORE_PER_APPLE = 10, APPLE_PER_LEVEL = 1 };
 private:
 	int countApple_;
 	int level_;

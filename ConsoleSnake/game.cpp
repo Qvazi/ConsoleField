@@ -32,7 +32,7 @@ void Game::update()
 		score_ = Score();
 		speedGame = START_SPEED_GAME;
 	}
-	if((speedGame - score_.getLevel()*SPEED_PER_LEVEL) <= 10)
+	if((START_SPEED_GAME - score_.getLevel()*SPEED_PER_LEVEL) <= 10)
 		speedGame = 10;
 	else speedGame = START_SPEED_GAME - score_.getLevel()*SPEED_PER_LEVEL;
 }
