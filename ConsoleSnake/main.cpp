@@ -4,6 +4,7 @@
 #ifdef WINDOWS
 #include <conio.h>
 #include <Windows.h>
+#include "winFun.hpp"
 #else
 #include <unistd.h>
 #include <termios.h>
@@ -97,14 +98,22 @@ void keyEvent()
 
 int main()
 {
+	
 	using std::cout;
 	using std::endl;
 	using std::cin;
 	using std::string;
-		
+	hideCursor();
 #ifndef WINDOWS
   nonblock(NB_ENABLE);
 #endif
+	game.drawBorder();
+	game.drawScore();
+	gotoxy(0,13);
+	cout << "Press 'p' to pause." << endl;
+	gotoxy(0,14);
+	cout << "Press 'u' to On\\Off sound." << endl;
+	
 	while(true)
 	{
 		if(_kbhit()) keyEvent();
@@ -114,17 +123,18 @@ int main()
 			
 			game.update();
 #ifdef WINDOWS
-			system("cls");
+			//system("cls");
 #else
 			system("clear");
 #endif			
 			game.draw();
+			game.redrawScore();
 
-			cout << "Press 'p' to pause." << endl;
-			cout << "Press 'u' to On\\Off sound." << endl;
+			
 			Speed(game.getSpeedGame());
 			
 	}
+	
 	
 	return 0;
 }

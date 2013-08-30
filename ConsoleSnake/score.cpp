@@ -19,5 +19,5 @@ void Score::plusApple()
 	countApple_++;
 	if(!(countApple_ % APPLE_PER_LEVEL))
 		level_++;
-	score_ = countApple_ * SCORE_PER_APPLE * level_;
+	score_ = countApple_ * SCORE_PER_APPLE * (level_+1);
 }

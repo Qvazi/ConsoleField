@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -71,12 +71,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="score.cpp" />
     <ClCompile Include="snake.cpp" />
+    <ClCompile Include="winFun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="field.hpp" />
     <ClInclude Include="game.hpp" />
     <ClInclude Include="score.hpp" />
     <ClInclude Include="snake.hpp" />
+    <ClInclude Include="winFun.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

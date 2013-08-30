@@ -8,7 +8,7 @@ class Point
 {
 public:
 	int w,h;
-	Point(int w_ = 1,int h_ = 1):w(w_),h(h_){}
+	Point(int w_ = 0,int h_ = 0):w(w_),h(h_){}
 };
 
 class Snake

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "snake.hpp"
+#include "winFun.hpp"
 #include "field.hpp"
 #include "game.hpp"
 Snake::Snake()
@@ -73,7 +74,7 @@ bool Snake::update(Game & game)
 	}
 	else
 	{
-		if(p.w < 1 || p.w > Field::WIDTH || p.h < 1 || p.h > Field::HEIGHT)
+		if(p.w < 0 || p.w > Field::WIDTH-1 || p.h < 0 || p.h > Field::HEIGHT-1)
 		{
 			if(Game::SOUND)
 				std::cout << "\a\a\a";
@@ -93,7 +94,9 @@ bool Snake::update(Game & game)
 	{
 		if(Game::SOUND)
 			std::cout << "\a";
+		// ѕлюсуем €блоко к очкам
 		game.getScore().plusApple();
+
 		game.getField().setUnit(Field::SNAKE_BODY,p.w,p.h);
 		game.getField().newApple();
 	}

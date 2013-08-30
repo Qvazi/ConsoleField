@@ -26,6 +26,9 @@ public:
 	int getSpeedGame() const;
 	Field & getField();
 	Score & getScore();
+	void drawBorder() const;
+	void drawScore() const;
+	void redrawScore() const;
 	Difficulty getDiffuculty() const;
 	void keyEvent(Snake::Direction d);
 	void update();

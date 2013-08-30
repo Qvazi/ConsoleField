@@ -1,75 +1,94 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include "winFun.hpp"
 #include "field.hpp"
 #include "snake.hpp"
 
+
 Field::Field()
 {
-	for(int h=0;h<HEIGHT+2;++h)
-		for(int w=0;w<WIDTH+2;++w)
-			if( h==0 || h==(HEIGHT+1) )
-				f_[w][h] = TDBORDER;
-			else if( w==0 || w==(WIDTH+1) )
-				f_[w][h] = LRBORDER;
-			else
-				f_[w][h] = EMPTY;
+	for(int h=0;h<HEIGHT;++h)
+		for(int w=0;w<WIDTH;++w)
+			f_[w][h] = EMPTY;
 	newApple();
+}
+void Field::drawBorder() const
+{
+
+for(int h=0;h<HEIGHT+2;++h)
+	{
+		for(int w=0;w<WIDTH+2;++w)
+		{
+			if( h==0 || h==(HEIGHT+1) )
+			{
+				gotoxy(w,h);
+				std::cout << '#';
+			}
+			else if( w==0 || w==(WIDTH+1) )
+			{
+				gotoxy(w,h);
+				std::cout << '#';
+			}
+		}
+		std::cout << std::endl;
+	}
+			
 }
 void Field::draw(const Snake & s)
 {
 	using std::cout;
 	using std::endl;
 	Point p = s.getBody().front();
-	for (int y = 0; y < HEIGHT+2; ++y)
+	for (int y = 0; y < HEIGHT; ++y)
 	{
-		for (int x = 0; x < WIDTH+2; ++x)
+		for (int x = 0; x < WIDTH; ++x)
 		{
 		  switch (f_[x][y])
 		  {
-		  case EMPTY:
-				std::cout << ' ';
-		break;
-		  case TDBORDER:
-			  //std::cout << static_cast<char>(219);
-			  std::cout << '#';
-			  break;
-		  case LRBORDER:
-			  //std::cout << static_cast<char>(219);
-			  std::cout << '#';			  
-			  break;
-		  case SNAKE_BODY:
+		    case SNAKE_BODY:
 			  if(x == p.w && y == p.h)
 				  switch(s.getDirection())
 				  {
 				  case Snake::LEFT:
 					  //std::cout << static_cast<char>(17);
+					  gotoxy(x+1,y+1);
 					  std::cout << '<';
 					  break;
 				  case Snake::RIGHT:
 					  //std::cout << static_cast<char>(16);
+					  gotoxy(x+1,y+1);
 					  std::cout << '>';
 					  break;
 				  case Snake::DOWN:
 					  //std::cout << static_cast<char>(31);
+					  gotoxy(x+1,y+1);
 					  std::cout << 'v';
 					  break;
 				  case Snake::UP:
 					  //std::cout << static_cast<char>(30);
+					  gotoxy(x+1,y+1);
 					  std::cout << '^';
 					  break;
 				  }
 			  else
+			  {
+				  gotoxy(x+1,y+1);
 				  std::cout << '%';
-		break;
+			  }
+				break;
 		  case APPLE:
 			//std::cout << char(3);
+			  gotoxy(x+1,y+1);
 			std::cout << '*';
 		break;
+		  case EMPTY:
+			   gotoxy(x+1,y+1);
+			std::cout << ' ';
+			  break;
 		  }
 	  
 		}
-		std::cout << std::endl;
 	}
 }
 
@@ -79,8 +98,8 @@ void Field::newApple()
 	int w,h;
 	do
 	{
-		w = std::rand() % WIDTH+1;
-		h = std::rand() % HEIGHT+1;
+		w = std::rand() % WIDTH;
+		h = std::rand() % HEIGHT;
 	}
 	while(getUnit(w,h)!=EMPTY);
 	setUnit(APPLE,w,h);

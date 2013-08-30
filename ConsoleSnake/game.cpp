@@ -1,4 +1,5 @@
 #include <iostream>
+#include "winFun.hpp"
 #include "game.hpp"
 
 bool Game::SOUND = false;
@@ -13,9 +14,7 @@ Game::Game()
 }
 void Game::draw()
 {
-	std::cout << "Level: " << score_.getLevel()+1
-				<< " Score: " << score_.getScore()
-				<< " Speed: " << speedGame << std::endl;
+	
 	field_.draw(snake_);
 	
 }
@@ -51,4 +50,27 @@ Score & Game::getScore()
 Game::Difficulty Game::getDiffuculty() const
 {
 	return difficulty_;
+}
+void Game::drawBorder() const
+{
+	field_.drawBorder();
+}
+void Game::drawScore() const
+{
+	gotoxy(Field::WIDTH+5,3);
+	std::cout << "Level: ";
+	gotoxy(Field::WIDTH+5,4);
+	std::cout << "Score: ";
+	gotoxy(Field::WIDTH+5,5);
+	std::cout << "Speed: ";
+	
+}
+void Game::redrawScore() const
+{
+	gotoxy(Field::WIDTH+12,3);
+	std::cout << score_.getLevel()+1 << "    ";
+	gotoxy(Field::WIDTH+12,4);
+	std::cout << score_.getScore() << "    ";
+	gotoxy(Field::WIDTH+12,5);
+	std::cout << speedGame<< "    ";
 }
