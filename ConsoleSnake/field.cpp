@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <cstdlib>
 #include "field.hpp"
 #include "snake.hpp"
 
@@ -30,33 +31,40 @@ void Field::draw(const Snake & s)
 				std::cout << ' ';
 		break;
 		  case TDBORDER:
-			  std::cout << static_cast<char>(219);
+			  //std::cout << static_cast<char>(219);
+			  std::cout << '#';
 			  break;
 		  case LRBORDER:
-			  std::cout << static_cast<char>(219);
+			  //std::cout << static_cast<char>(219);
+			  std::cout << '#';			  
 			  break;
 		  case SNAKE_BODY:
 			  if(x == p.w && y == p.h)
 				  switch(s.getDirection())
 				  {
 				  case Snake::LEFT:
-					  std::cout << static_cast<char>(17);
+					  //std::cout << static_cast<char>(17);
+					  std::cout << '<';
 					  break;
 				  case Snake::RIGHT:
-					  std::cout << static_cast<char>(16);
+					  //std::cout << static_cast<char>(16);
+					  std::cout << '>';
 					  break;
 				  case Snake::DOWN:
-					  std::cout << static_cast<char>(31);
+					  //std::cout << static_cast<char>(31);
+					  std::cout << 'v';
 					  break;
 				  case Snake::UP:
-					  std::cout << static_cast<char>(30);
+					  //std::cout << static_cast<char>(30);
+					  std::cout << '^';
 					  break;
 				  }
 			  else
-				  std::cout << 'o';
+				  std::cout << '%';
 		break;
 		  case APPLE:
-			std::cout << char(3);
+			//std::cout << char(3);
+			std::cout << '*';
 		break;
 		  }
 	  
@@ -67,12 +75,12 @@ void Field::draw(const Snake & s)
 
 void Field::newApple()
 {
-	srand(time(0));
+	std::srand(std::time(0));
 	int w,h;
 	do
 	{
-		w = rand() % WIDTH+1;
-		h = rand() % HEIGHT+1;
+		w = std::rand() % WIDTH+1;
+		h = std::rand() % HEIGHT+1;
 	}
 	while(getUnit(w,h)!=EMPTY);
 	setUnit(APPLE,w,h);

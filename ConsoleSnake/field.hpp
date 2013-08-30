@@ -7,7 +7,7 @@ class Snake;
 class Field
 {
 public:
-	enum { WIDTH = 20, HEIGHT = 15 };
+	enum { WIDTH = 30, HEIGHT = 10 };
 	enum Unit { EMPTY,TDBORDER,LRBORDER,APPLE,SNAKE_BODY};
 private:
 	Unit f_[WIDTH+2][HEIGHT+2];

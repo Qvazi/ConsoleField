@@ -2,7 +2,7 @@
 
 Score::Score()
 {
-	level_ = 1;
+	level_ = 0;
 	score_ = 0;
 	countApple_ = 0;
 }

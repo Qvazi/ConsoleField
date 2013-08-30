@@ -9,7 +9,7 @@
 class Game
 {
 public:
-	enum { START_SPEED_GAME = 260, SPEED_PER_LEVEL = 20 };
+	enum { START_SPEED_GAME = 270, SPEED_PER_LEVEL = 20 };
 	enum Difficulty { EASY , MEDIUM , HARD };
 	static bool SOUND;
 	static bool PAUSE;

@@ -13,8 +13,9 @@ Game::Game()
 }
 void Game::draw()
 {
-	std::cout << "Level: " << score_.getLevel()
-				<< " Score: " << score_.getScore() << std::endl;
+	std::cout << "Level: " << score_.getLevel()+1
+				<< " Score: " << score_.getScore()
+				<< " Speed: " << speedGame << std::endl;
 	field_.draw(snake_);
 	
 }
@@ -31,8 +32,8 @@ void Game::update()
 		score_ = Score();
 		speedGame = START_SPEED_GAME;
 	}
-	if((speedGame - score_.getLevel()*SPEED_PER_LEVEL) <= 30)
-		speedGame = 50;
+	if((speedGame - score_.getLevel()*SPEED_PER_LEVEL) <= 10)
+		speedGame = 10;
 	else speedGame = START_SPEED_GAME - score_.getLevel()*SPEED_PER_LEVEL;
 }
 int Game::getSpeedGame() const
