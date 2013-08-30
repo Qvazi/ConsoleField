@@ -10,7 +10,7 @@ Game::Game()
 	field_ = Field();
 	score_ = Score();
 	speedGame = START_SPEED_GAME;
-	difficulty_ = HARD;
+	difficulty_ = EASY;
 }
 void Game::draw()
 {

@@ -62,14 +62,14 @@ bool Snake::update(Game & game)
 	}
 	if(game.getDiffuculty() == Game::EASY)
 	{
-		if(p.w < 1)
-			p.w = Field::WIDTH;
-		else if(p.w > Field::WIDTH)
-			p.w = 1;
-		if(p.h < 1)
-			p.h = Field::HEIGHT;
-		else if(p.h > Field::HEIGHT)
-			p.h = 1;
+		if(p.w < 0)
+			p.w = Field::WIDTH-1;
+		else if(p.w > Field::WIDTH-1)
+			p.w = 0;
+		if(p.h < 0)
+			p.h = Field::HEIGHT-1;
+		else if(p.h > Field::HEIGHT-1)
+			p.h = 0;
 		
 	}
 	else
